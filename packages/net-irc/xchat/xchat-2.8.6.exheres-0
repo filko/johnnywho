@@ -9,7 +9,7 @@ DOWNLOADS="http://xchat.org/files/source/$(get_version_component_range 1-2)/${PN
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="dbus gtk ipv6 perl python spell ssl"
 
 DEPENDENCIES="
