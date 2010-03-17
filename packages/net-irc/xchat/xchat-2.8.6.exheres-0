@@ -10,9 +10,11 @@ DOWNLOADS="http://xchat.org/files/source/$(ever range 1-2)/${PNVR}.tar.bz2"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="dbus gtk ipv6 perl python spell ssl"
+MYOPTIONS="dbus gtk perl python spell"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
     build+run:
         dev-libs/glib:2[>=2.6]
         dbus? ( dev-libs/dbus-glib[>=0.71] )
@@ -24,15 +26,14 @@ DEPENDENCIES="
         perl? ( dev-lang/perl[>=5.8.0] )
         python? ( dev-lang/python:=[>=2.2] )
         spell? ( x11-libs/libsexy[>=0.1.8] )
-    build:
-        dev-util/pkg-config[>=0.20]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/xc286-smallfixes.diff" 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/xc286-smallfixes.diff"
                               "${FILES}/${PN}-2.8.6-gtk-sealed-types.patch"
                               "${FILES}/${PN}-2.8.6-undefined-userlist-update.patch" )
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-socks' '--enable-textfe'
-'--disable-perl-old' '--disable-tcl' '--enable-plugin' '--enable-mmx' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'gtk shm' 'gtk xft' 'gtk xlib'
-'gtk gtkfe' 'ipv6' 'perl' 'python' 'spell spell libsexy' 'ssl openssl' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-socks' '--enable-textfe' '--disable-perl-old' '--disable-tcl'
+                               '--enable-plugin' '--enable-mmx' '--enable-ipv6' '--enable-openssl' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'gtk shm' 'gtk xft' 'gtk xlib' 'gtk gtkfe' 'perl' 'python'
+                                       'spell spell libsexy' )
+
