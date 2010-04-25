@@ -30,7 +30,10 @@ DEPENDENCIES="
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/xc286-smallfixes.diff"
                               "${FILES}/${PN}-2.8.6-gtk-sealed-types.patch"
-                              "${FILES}/${PN}-2.8.6-undefined-userlist-update.patch" )
+                              "${FILES}/${PN}-2.8.6-undefined-userlist-update.patch"
+                              "${FILES}/${PN}-2.8.6-fix_deprecated_widgets.patch"
+                              "${FILES}/${PN}-2.8.6-fix_implicit_declaration.patch"
+                              "${FILES}/CVE-2009-0315.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-socks' '--enable-textfe' '--disable-perl-old' '--disable-tcl'
                                '--enable-plugin' '--enable-mmx' '--enable-ipv6' '--enable-openssl' )
