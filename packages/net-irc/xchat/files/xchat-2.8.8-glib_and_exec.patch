@@ -1,0 +1,72 @@
+Source: upstream
+Reason: won't build with newer glib
+Upstream: yes
+
+Index: src/common/outbound.c
+===================================================================
+--- src/common/outbound.c	(revision 1498)
++++ src/common/outbound.c	(revision 1499)
+@@ -1716,7 +1716,7 @@
+ 		rest = buf;
+ 	if (*rest) {
+ 		s->buffill = len - (rest - buf); /* = strlen(rest) */
+-		s->linebuf = malloc(s->buffill);
++		s->linebuf = malloc(s->buffill + 1);
+ 		memcpy(s->linebuf, rest, s->buffill);
+ 		*rest = '\0';
+ 		len -= s->buffill; /* possibly 0 */
+Index: src/common/servlist.c
+===================================================================
+--- src/common/servlist.c	(revision 1498)
++++ src/common/servlist.c	(revision 1499)
+@@ -24,7 +24,7 @@
+ #include <unistd.h>
+ 
+ #include "xchat.h"
+-#include <glib/ghash.h>
++#include <glib.h>
+ 
+ #include "cfgfiles.h"
+ #include "fe.h"
+Index: src/common/util.c
+===================================================================
+--- src/common/util.c	(revision 1498)
++++ src/common/util.c	(revision 1499)
+@@ -39,7 +39,7 @@
+ #include <errno.h>
+ #include "xchat.h"
+ #include "xchatc.h"
+-#include <glib/gmarkup.h>
++#include <glib.h>
+ #include <ctype.h>
+ #include "util.h"
+ #include "../../config.h"
+Index: src/common/text.c
+===================================================================
+--- src/common/text.c	(revision 1498)
++++ src/common/text.c	(revision 1499)
+@@ -28,7 +28,7 @@
+ #include <sys/mman.h>
+ 
+ #include "xchat.h"
+-#include <glib/ghash.h>
++#include <glib.h>
+ #include "cfgfiles.h"
+ #include "chanopt.h"
+ #include "plugin.h"
+Index: src/common/xchat.h
+===================================================================
+--- src/common/xchat.h	(revision 1498)
++++ src/common/xchat.h	(revision 1499)
+@@ -1,10 +1,6 @@
+ #include "../../config.h"
+ 
+-#include <glib/gslist.h>
+-#include <glib/glist.h>
+-#include <glib/gutils.h>
+-#include <glib/giochannel.h>
+-#include <glib/gstrfuncs.h>
++#include <glib.h>
+ #include <time.h>			/* need time_t */
+ 
+ #ifndef XCHAT_H
