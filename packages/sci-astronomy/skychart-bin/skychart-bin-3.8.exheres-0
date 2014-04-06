@@ -1,0 +1,49 @@
+# Copyright 2013 John Kallimanis  <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gtk-icon-cache
+
+SUMMARY="Free Software to draw sky charts"
+DESCRIPTION="
+Free astronomical software for drawing detailed sky charts, controlling GoTo mounts, 
+obtaining astronomical ephemeris information and more. Binary build.
+"
+HOMEPAGE="http://www.ap-i.net/skychart/"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    platform:
+        amd64
+"
+DOWNLOADS="
+  platform:amd64? ( http://sourceforge.net/projects/skychart/files/1-%20cdc-skychart/version_${PV}/skychart-${PV}-2450-linux_x86_64.tar.bz2 -> ${PNV}-2450-linux_x86_64.tar.bz2 )
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+DEPENDENCIES="
+    run:
+        x11-libs/gtk+:2
+    suggestion:
+        x11-apps/xplanet [[ description = [ Render realistic planets. ] ]]
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
+src_unpack(){
+    default
+    edo mv skychart ${PNV}
+}
+
+src_install(){
+#Install the binaries...
+    bins=(cdcicon skychart varobs varobs_lpv_bulletin)
+    dobin "${WORK}"/${bins[@]/#/bin/}
+#Install the libraries...
+    libs=(libcdcwcs.so  libgetdss.so  libplan404.so)
+    dolib "${WORK}"/${libs[@]/#/lib/}
+#Install icons and configuration files...
+    insinto /usr
+    doins -r share
+}
+
