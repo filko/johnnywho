@@ -11,12 +11,12 @@ DOWNLOADS="http://download.gna.org/${PN}/${PNV}.tar.bz2"
 LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="
-    alsa [[ description = [ Support alsa sound driver. ] ]]
-    jack [[ description = [ Support JACK audio server. ] ]]
+    alsa
+    jack
     largefiles [[ description = [ Support manipulation of large files. ] ]]
-    oss [[ description = [ Support OSS sound driver. ] ]]
-    precision [[ description = [ Use double precision floating point numbers for sound processing. ] ]] 
-    pulseaudio [[ description = [ Support for PulseAudio. ] ]]
+    oss
+    precision [[ description = [ Use double precision floating point numbers for sound processing. ] ]]
+    pulseaudio
         linguas:
            	af ak am ar as ast az be bg bn bo br bs ca cs
         	cy da de el en en_CA en_GB en_US eo es et eu fa fi fil fr
@@ -29,7 +29,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
    build+run:
-        alsa? ( 
+        alsa? (
             sys-sound/alsa-lib
         )
         jack? (
@@ -46,7 +46,6 @@ DEPENDENCIES="
 
 BUGS_TO="johnkall007@gmail.com"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=('--with-default-driver=auto' '--enable-nls')
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "precision double-samples" "largefiles largefile" )
+DEFAULT_SRC_CONFIGURE_PARAMS=('--with-default-driver=auto' '--enable-nls' '--enable-double-samples' '--enable-largefile')
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "alsa alsalib" "oss" "jack" "pulseaudio pulse" )
 
