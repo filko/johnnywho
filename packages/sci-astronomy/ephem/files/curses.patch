@@ -1,0 +1,23 @@
+Source: John Kallimanis
+Upstream: Not applied by upstream. Created for porting reasons.
+Reason: Link objects to ncurses instead of termcap.
+diff -crB ephem-4.30/Makefile ephem/Makefile
+*** ephem-4.30/Makefile	2011-04-25 20:46:46.000000000 +0300
+--- ephem/Makefile	2013-09-22 17:40:03.826039186 +0300
+***************
+*** 10,16 ****
+  	version.o watch.o
+  
+  ephem:	$(EPHEM)
+! 	cc -o $@ $(EPHEM) -ltermcap -lm
+  
+  aa_hadec.o:	astro.h
+  
+--- 10,16 ----
+  	version.o watch.o
+  
+  ephem:	$(EPHEM)
+! 	cc -o $@ $(EPHEM) -lcurses -lm
+  
+  aa_hadec.o:	astro.h
+  
