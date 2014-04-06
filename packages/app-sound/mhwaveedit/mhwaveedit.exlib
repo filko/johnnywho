@@ -1,0 +1,52 @@
+# Copyright 2013 John Kallimanis  <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gtk-icon-cache
+
+SUMMARY="mhWaveEdit is a graphical program for editing sound files."
+
+HOMEPAGE="https://gna.org/projects/${PN}/"
+DOWNLOADS="http://download.gna.org/${PN}/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="
+    alsa [[ description = [ Support alsa sound driver. ] ]]
+    jack [[ description = [ Support JACK audio server. ] ]]
+    largefiles [[ description = [ Support manipulation of large files. ] ]]
+    oss [[ description = [ Support OSS sound driver. ] ]]
+    precision [[ description = [ Use double precision floating point numbers for sound processing. ] ]] 
+    pulseaudio [[ description = [ Support for PulseAudio. ] ]]
+        linguas:
+           	af ak am ar as ast az be bg bn bo br bs ca cs
+        	cy da de el en en_CA en_GB en_US eo es et eu fa fi fil fr
+	        ga gd gl gu he hi hr hu hy ia id is it ja ka kk kn ko ky
+	        la lb lo lt lv mk ml mn mr ms mt nan nb nl nn oc pa pl pt pt_BR ro
+	        ru sco se si sk sl sq sr sv sw ta te tg th tl tr tt uk uz vi zh
+	        zh_CN zh_HK zh_TW zu
+"
+
+
+DEPENDENCIES="
+   build+run:
+        alsa? ( 
+            sys-sound/alsa-lib
+        )
+        jack? (
+            media-sound/jack-audio-connection-kit
+        )
+        oss? (
+            sys-sound/oss
+        )
+        pulseaudio? (
+            media-sound/pulseaudio
+        )
+        x11-libs/gtk+:2
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=('--with-default-driver=auto' '--enable-nls')
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "precision double-samples" "largefiles largefile" )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "alsa alsalib" "oss" "jack" "pulseaudio pulse" )
+
