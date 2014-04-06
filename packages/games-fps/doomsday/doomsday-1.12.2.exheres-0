@@ -1,5 +1,6 @@
 # Copyright 2012 A Frederick Christensen <fauxmight@nosocomia.com>
 # Distributed under the terms of the GNU General Public License v2
+# Maintained by John Kallimanis <johnkall007@gmail.com>
 
 require qmake sourceforge [ project=deng suffix=tar.gz ]
 
@@ -18,7 +19,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-BUGS_TO="fauxmight@nosocomia.com"
+BUGS_TO="johnkall007@gmail.com"
 REMOTE_IDS="sourceforge:deng"
 
 DEPENDENCIES="
@@ -35,7 +36,7 @@ DEPENDENCIES="
 src_configure() {
     edo mkdir build
     pushd build
-    eqmake4 -r ../doomsday/doomsday.pro CONFIG+=deng_noopenal CONFIG+=deng_snowberry
+    eqmake -r ../doomsday/doomsday.pro CONFIG+=deng_noopenal CONFIG+=deng_snowberry
     popd
 }
 
