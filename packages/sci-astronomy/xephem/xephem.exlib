@@ -1,0 +1,86 @@
+# Copyright 2013 John Kallimanis  <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Partially based on xephem-3.7.6.ebuild from Gentoo, which is:
+# Copyright 1999-2013 Gentoo Foundation
+
+require gtk-icon-cache
+
+SUMMARY="Interactive astronomical ephemeris for the serious amateur astronomer"
+HOMEPAGE="http://www.clearskyinstitute.com/xephem/xephem.html"
+EDB_FILES=(Messier.edb NGC.edb YBS.edb asteroids.edb comets.edb gps.edb spacecraft.edb vla2.edb vla20.edb vla3.7.edb vla6.edb vla6.edb )
+DOWNLOADS="http://97.74.56.125/free/${PNV}.tar.gz
+           stars? ( ${EDB_FILES[*]/#/http://web.mit.edu/outland/share/lib/xephem/edb/} )"
+
+LICENCES="xephem"
+
+DEPENDENCIES="
+    build+run:
+        media-libs/libpng
+        x11-libs/lesstif
+"
+
+MYOPTIONS="
+    help [[ description = [ Install reference manual. ] ]]
+    stars [[ description = [ Install extra star catalogs, e.g. NGC, IC, etc. ] ]]"
+
+BUGS_TO="johnkall007@gmail.com"
+
+UPSTREAM_CHANGELOG="http://www.clearskyinstitute.com/xephem/changes.html"
+UPSTREAM_DOCUMENTATION="http://www.clearskyinstitute.com/xephem/help/xephem.html"
+
+export_exlib_phases src_compile src_install pkg_postinst
+
+xephem_src_compile() {
+    emake MOTIF=${LIBDIR} -C  GUI/xephem
+}
+
+xephem_src_install() {
+#Pickup misc help files from top-level directory.
+    emagicdocs
+
+#This sequence of commands substitutes the missing install target of the Makefile. Installation needs to be done manually:
+    edo cd GUI/xephem
+
+    dobin xephem
+
+    insinto /usr/share/xephem
+    doins -r auxil catalogs fifos fits gallery lo
+    doman xephem.1
+
+    insinto /etc
+    doins "${FILES}/XEphem"
+
+    insinto /usr/share/applications
+    doins "${FILES}/xephem.desktop"
+
+    insinto /usr/share/pixmaps/
+    doins XEphem.png
+
+#Install the help file if told so:
+    if option help ; then
+        insinto /usr/share/xephem/help
+        doins help/xephem.html
+#Install images for the help file.
+        doins -r help/png/
+    fi
+
+#Install extra catalogs if required:
+    if option stars ; then
+        insinto /usr/share/xephem/catalogs
+        doins "${EDB_FILES[@]/#/${FETCHEDDIR}/}"
+    fi
+}
+
+xephem_pkg_postinst(){
+    if option stars ; then
+        elog "Extra catalog files have been installed. If you want to load them, "
+        elog "go to Data -> Files... menu on a running instance of the programme "
+        elog "and load the extra catalogs you need from Files menu on the new window."
+    fi
+    if option help ; then
+        elog "In order to view the installed help file configure xephem to use "
+        elog "your prefered html browser via Help -> Configure Help... menu item."
+    fi
+    gtk-icon-cache_pkg_postinst
+}
+
