@@ -1,0 +1,33 @@
+# Copyright 2013 John Kallimanis
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="CLI, screen-based, retro astronomical ephemeris."
+HOMEPAGE="http://www.clearskyinstitute.com/ephem/index.html"
+DOWNLOADS="http://www.clearskyinstitute.com/${PN}/${PNV}.tar.gz
+    http://www.clearskyinstitute.com/ephem/Man.txt -> ${PNV}-Man.txt"
+
+DEPENDENCIES="
+    build+run:
+        sys-libs/ncurses
+"
+
+LICENCES="ephem"
+SLOT="0"
+
+BUGS_TO="johnkall007@gmail.com"
+
+UPSTREAM_DOCUMENTATION="http://www.clearskyinstitute.com/${PN}/Man.txt"
+DEFAULT_SRC_PREPARE_PATCHES=("${FILES}"/strncpy-glibc.patch "${FILES}"/curses.patch)
+
+src_install(){
+    dobin ephem
+    dodoc "${FETCHEDDIR}"/${PNV}-Man.txt
+    insinto /etc/ephem
+    doins ephem.db ephem.cfg
+}
+
+pkg_postinst(){
+    elog "Make sure to export the EPHEMCFG and EPHEMDB environment variables, in order to tell"
+    elog "the programme where to find the configuration files. These are under /etc/ephem. "
+}
+
