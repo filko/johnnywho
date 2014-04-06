@@ -20,7 +20,6 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 BUGS_TO="johnkall007@gmail.com"
-REMOTE_IDS="sourceforge:deng"
 
 DEPENDENCIES="
     build+run:
