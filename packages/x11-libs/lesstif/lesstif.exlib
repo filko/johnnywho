@@ -1,6 +1,8 @@
 # Copyright 2013 John Kallimanis <johnkall007@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require sourceforge
+
 SUMMARY="A source-level compatible FOSS version of the Motif GUI Toolkit."
 HOMEPAGE="http://lesstif.sourceforge.net/"
 DOWNLOADS="http://downloads.sourceforge.net/project/${PN}/${PN}/${PV}/${PNV}.tar.bz2"
