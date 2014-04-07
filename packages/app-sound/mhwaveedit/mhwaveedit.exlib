@@ -13,9 +13,7 @@ SLOT="0"
 MYOPTIONS="
     alsa
     jack
-    largefiles [[ description = [ Support manipulation of large files. ] ]]
     oss
-    precision [[ description = [ Use double precision floating point numbers for sound processing. ] ]]
     pulseaudio
         linguas:
            	af ak am ar as ast az be bg bn bo br bs ca cs
