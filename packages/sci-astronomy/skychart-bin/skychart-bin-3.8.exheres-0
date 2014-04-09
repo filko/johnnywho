@@ -5,7 +5,7 @@ require gtk-icon-cache
 
 SUMMARY="Free Software to draw sky charts"
 DESCRIPTION="
-Free astronomical software for drawing detailed sky charts, controlling GoTo mounts, 
+Free astronomical software for drawing detailed sky charts, controlling GoTo mounts,
 obtaining astronomical ephemeris information and more. Binary build.
 "
 HOMEPAGE="http://www.ap-i.net/skychart/"
@@ -32,7 +32,7 @@ BUGS_TO="johnkall007@gmail.com"
 
 src_unpack(){
     default
-    edo mv skychart ${PNV}
+    WORK="${WORKBASE}"/skychart
 }
 
 src_install(){
