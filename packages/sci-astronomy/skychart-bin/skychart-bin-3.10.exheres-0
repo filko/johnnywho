@@ -1,5 +1,7 @@
 # Copyright 2013 John Kallimanis  <johnkall007@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'skychart-bin-3.6.215.ebuild' from Gentoo which is:
+# Copyright 1999-2012 Gentoo Foundation
 
 require gtk-icon-cache
 
@@ -14,8 +16,12 @@ MYOPTIONS="
     platform:
         amd64
 "
+
+MY_PN="skychart"
+MY_PV=$(ever replace 2 -)
+
 DOWNLOADS="
-  platform:amd64? ( http://sourceforge.net/projects/skychart/files/1-%20cdc-skychart/version_${PV}/skychart-${PV}-2450-linux_x86_64.tar.bz2 -> ${PNV}-2450-linux_x86_64.tar.bz2 )
+  platform:amd64? ( mirror://sourceforge/"${MY_PN}"/"${MY_PN}"-"${MY_PV}"-2854-linux_x86_64.tar.xz )
 "
 
 LICENCES="GPL-2"
