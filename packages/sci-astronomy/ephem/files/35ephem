@@ -1,0 +1,2 @@
+EPHEMCFG="/etc/ephem/ephem.cfg"
+EPHEMDB="/etc/ephem/ephem.db"

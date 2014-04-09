@@ -24,10 +24,6 @@ src_install(){
     dodoc "${FETCHEDDIR}"/${PNV}-Man.txt
     insinto /etc/ephem
     doins ephem.db ephem.cfg
-}
-
-pkg_postinst(){
-    elog "Make sure to export the EPHEMCFG and EPHEMDB environment variables, in order to tell"
-    elog "the programme where to find the configuration files. These are under /etc/ephem. "
+    doenvd "${FILES}"/35ephem
 }
 
