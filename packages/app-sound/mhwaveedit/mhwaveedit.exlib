@@ -14,6 +14,7 @@ MYOPTIONS="
     alsa
     jack
     oss
+    portaudio
     pulseaudio
         linguas:
            	af ak am ar as ast az be bg bn bo br bs ca cs
@@ -36,6 +37,9 @@ DEPENDENCIES="
         oss? (
             sys-sound/oss
         )
+        portaudio? (
+            media-libs/portaudio
+        )
         pulseaudio? (
             media-sound/pulseaudio
         )
@@ -44,6 +48,7 @@ DEPENDENCIES="
 
 BUGS_TO="johnkall007@gmail.com"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=('--with-default-driver=auto' '--enable-nls' '--enable-double-samples' '--enable-largefile')
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "alsa alsalib" "oss" "jack" "pulseaudio pulse" )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-default-driver=auto' '--enable-nls' '--enable-double-samples' '--enable-largefile' '--without-esound' '--without-sun'
+                              '--without-arts' '--without-sdl' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "alsa alsalib" "oss" "jack" "portaudio" "pulseaudio pulse" )
 
