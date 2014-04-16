@@ -16,13 +16,14 @@ MYOPTIONS="
     oss
     portaudio
     pulseaudio
+    sdl
         linguas:
-           	af ak am ar as ast az be bg bn bo br bs ca cs
-        	cy da de el en en_CA en_GB en_US eo es et eu fa fi fil fr
-	        ga gd gl gu he hi hr hu hy ia id is it ja ka kk kn ko ky
-	        la lb lo lt lv mk ml mn mr ms mt nan nb nl nn oc pa pl pt pt_BR ro
-	        ru sco se si sk sl sq sr sv sw ta te tg th tl tr tt uk uz vi zh
-	        zh_CN zh_HK zh_TW zu
+            af ak am ar as ast az be bg bn bo br bs ca cs
+            cy da de el en en_CA en_GB en_US eo es et eu fa fi fil fr
+            ga gd gl gu he hi hr hu hy ia id is it ja ka kk kn ko ky
+            la lb lo lt lv mk ml mn mr ms mt nan nb nl nn oc pa pl pt pt_BR ro
+            ru sco se si sk sl sq sr sv sw ta te tg th tl tr tt uk uz vi zh
+            zh_CN zh_HK zh_TW zu
 "
 
 
@@ -48,7 +49,7 @@ DEPENDENCIES="
 
 BUGS_TO="johnkall007@gmail.com"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-default-driver=auto' '--enable-nls' '--enable-double-samples' '--enable-largefile' '--without-esound' '--without-sun'
-                              '--without-arts' '--without-sdl' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "alsa alsalib" "oss" "jack" "portaudio" "pulseaudio pulse" )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-default-driver=auto' '--enable-nls' '--enable-gtk2' '--enable-double-samples' '--enable-largefile' '--without-esound'
+'--without-sun' '--without-arts' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "alsa alsalib" "oss" "jack" "portaudio" "pulseaudio pulse" "sdl" )
 
