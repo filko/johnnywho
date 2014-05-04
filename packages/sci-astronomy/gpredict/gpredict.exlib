@@ -1,0 +1,31 @@
+# Copyright 2014 John Kallimanis <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.gz ]
+require gtk-icon-cache
+
+SUMMARY="Gpredict is a real time satellite tracking and orbit prediction program."
+DESCRIPTION="
+Gpredict is a real time satellite tracking and orbit prediction program
+written using the Gtk+ widgets. Gpredict is targetted mainly towards ham radio
+operators but others interested in satellite tracking may find it useful as
+well. Gpredict uses the SGP4/SDP4 algorithms, which are compatible with the
+NORAD Keplerian elements.
+"
+HOMEPAGE="http://gpredict.oz9aec.net/"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2[>=2.16]
+        net-misc/curl[>=7.16.0]
+        x11-libs/goocanvas[>=0.9]
+        x11-libs/gtk+:2[>=2.12]
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( "--enable-nls" "--disable-caches" )
+
