@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gtk-icon-cache
-require sourceforge [ suffix="orig.tar.gz" ]
+require sourceforge
 
 SUMMARY="A webcam-based mouse emulator."
 DESCRIPTION="
@@ -12,6 +12,8 @@ No additional hardware is required. Based on the award winning Facial Mouse
 software.
 "
 HOMEPAGE="http://eviacam.sourceforge.net/"
+
+DOWNLOADS="mirror://sourceforge/${PN}/${PV}/${PN}_${PV}.orig.tar.gz -> ${PNV}.tar.gz"
 
 MYOPTIONS="debug"
 
