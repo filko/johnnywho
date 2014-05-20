@@ -1,0 +1,33 @@
+# Copyright 2014 John Kallimanis <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'dvgrab-3.5.ebuild' from Gentoo, which is:
+# Copyright 1999-2012 Gentoo Foundation
+SUMMARY="Digital Video (DV) grabber for GNU/Linux"
+
+HOMEPAGE="http://www.kinodv.org/"
+DOWNLOADS="mirror://sourceforge/kino/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="jpeg quicktime"
+
+DEPENDENCIES="
+    build+run:
+    media-libs/libdv[>=0.103]
+    media-libs/libavc1394[>=0.5.1]
+    media-libs/libiec61883[>=1.0]
+    media-libs/libraw1394[>=1.1]
+    jpeg? (
+        media-libs/libjpeg-turbo
+        media-libs/jpeg
+    )
+    quicktime? (
+        media-libs/libquicktime
+    )
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-libdv' '--disable-efence' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "jpeg libjpeg" "quicktime libquicktime" )
+
