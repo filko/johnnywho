@@ -1,0 +1,21 @@
+# Copyright 2014 John Kallimanis <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'libiec61883-1.2.0-r1.ebuild' from Gentoo, which is:
+# Copyright 1999-2013 Gentoo Foundation
+
+SUMMARY="Library for capturing video (dv or mpeg2) over the IEEE 1394 bus"
+
+HOMEPAGE="http://dennedy.org/cgi-bin/gitweb.cgi?p=dennedy.org/libiec61883.git"
+DOWNLOADS="mirror://kernel/linux/libs/ieee1394/${PNV}.tar.xz"
+
+LICENCES="( LGPL-2 GPL-2 )"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    media-libs/libraw1394[>=1.2.0]
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
