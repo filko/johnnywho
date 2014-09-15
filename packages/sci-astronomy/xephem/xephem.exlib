@@ -56,7 +56,7 @@ xephem_src_install() {
     insinto /usr/share/pixmaps/
     doins XEphem.png
 
-#Install the help file if told so:
+#Install the help file if I am told so:
     if option help ; then
         insinto /usr/share/xephem/help
         doins help/xephem.html
@@ -83,4 +83,3 @@ xephem_pkg_postinst(){
     fi
     gtk-icon-cache_pkg_postinst
 }
-
