@@ -17,10 +17,10 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
+        x11-server/xorg-server
         editres? (
             x11-apps/editres
         )
-        x11-server/xorg-server
 "
 
 BUGS_TO="johnkall007@gmail.com"
@@ -34,8 +34,7 @@ lesstif_src_install() {
     default
 #In order to do this differently I need to patch the makefile, which I haven 't...
     if [[ ${LIBDIR} != lib ]]; then
-        edo cp -r "${IMAGE}"usr/lib/ "${IMAGE}"usr/${LIBDIR}
-        edo rm -r "${IMAGE}"usr/lib
+        edo mv "${IMAGE}"usr/lib/ "${IMAGE}"usr/${LIBDIR}
     fi
 }
 
