@@ -38,8 +38,9 @@ BUGS_TO="johnkall007@gmail.com"
 
 src_unpack(){
     default
-    WORK="${WORKBASE}"/skychart
 }
+
+WORK="${WORKBASE}"/skychart
 
 src_install(){
 #Install the binaries...
