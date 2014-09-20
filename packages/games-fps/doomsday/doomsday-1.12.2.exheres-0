@@ -34,20 +34,20 @@ DEPENDENCIES="
 
 src_configure() {
     edo mkdir build
-    pushd build
+    edo pushd build
     eqmake -r ../doomsday/doomsday.pro CONFIG+=deng_noopenal CONFIG+=deng_snowberry
-    popd
+    edo popd
 }
 
 src_compile() {
-    pushd build
+    edo pushd build
     emake
-    popd
+    edo popd
 }
 
 src_install() {
-    pushd build
+    edo pushd build
     default
-    popd
+    edo popd
 }
 
