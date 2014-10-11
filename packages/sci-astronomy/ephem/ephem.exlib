@@ -2,9 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="CLI, screen-based, retro astronomical ephemeris."
-HOMEPAGE="http://www.clearskyinstitute.com/ephem/index.html"
+HOMEPAGE="http://www.clearskyinstitute.com/${PN}/index.html"
 DOWNLOADS="http://www.clearskyinstitute.com/${PN}/${PNV}.tar.gz
     http://www.clearskyinstitute.com/ephem/Man.txt -> ${PNV}-Man.txt"
+
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
