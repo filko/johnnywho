@@ -4,7 +4,7 @@
 require sourceforge
 
 SUMMARY="A source-level compatible FOSS version of the Motif GUI Toolkit."
-HOMEPAGE="http://lesstif.sourceforge.net/"
+HOMEPAGE="http://${PN}.sourceforge.net/"
 
 LICENCES="LGPL-2"
 SLOT="0"
