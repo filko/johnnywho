@@ -12,10 +12,12 @@ operators but others interested in satellite tracking may find it useful as
 well. Gpredict uses the SGP4/SDP4 algorithms, which are compatible with the
 NORAD Keplerian elements.
 "
-HOMEPAGE="http://gpredict.oz9aec.net/"
+HOMEPAGE="http://${PN}.oz9aec.net/"
 
 LICENCES="GPL-2"
 SLOT="0"
+
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
