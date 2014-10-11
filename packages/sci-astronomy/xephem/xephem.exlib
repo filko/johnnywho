@@ -6,10 +6,10 @@
 require gtk-icon-cache
 
 SUMMARY="Interactive astronomical ephemeris for the serious amateur astronomer"
-HOMEPAGE="http://www.clearskyinstitute.com/xephem/xephem.html"
+HOMEPAGE="http://www.clearskyinstitute.com/${PN}/${PN}.html"
 EDB_FILES=(Messier.edb NGC.edb YBS.edb asteroids.edb comets.edb gps.edb spacecraft.edb vla2.edb vla20.edb vla3.7.edb vla6.edb vla6.edb )
 DOWNLOADS="http://97.74.56.125/free/${PNV}.tar.gz
-           stars? ( ${EDB_FILES[*]/#/http://web.mit.edu/outland/share/lib/xephem/edb/} )"
+           stars? ( ${EDB_FILES[*]/#/http://web.mit.edu/outland/share/lib/${PN}/edb/} )"
 
 LICENCES="xephem"
 
@@ -25,8 +25,8 @@ MYOPTIONS="
 
 BUGS_TO="johnkall007@gmail.com"
 
-UPSTREAM_CHANGELOG="http://www.clearskyinstitute.com/xephem/changes.html"
-UPSTREAM_DOCUMENTATION="http://www.clearskyinstitute.com/xephem/help/xephem.html"
+UPSTREAM_CHANGELOG="http://www.clearskyinstitute.com/${PN}/changes.html"
+UPSTREAM_DOCUMENTATION="http://www.clearskyinstitute.com/${PN}/help/${PN}.html"
 
 export_exlib_phases src_compile src_install pkg_postinst
 
@@ -83,3 +83,4 @@ xephem_pkg_postinst(){
     fi
     gtk-icon-cache_pkg_postinst
 }
+
