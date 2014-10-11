@@ -11,7 +11,7 @@ as you move your head. It works on standard PCs equipped with a web camera.
 No additional hardware is required. Based on the award winning Facial Mouse
 software.
 "
-HOMEPAGE="http://eviacam.sourceforge.net/"
+HOMEPAGE="http://${PN}.sourceforge.net/"
 
 DOWNLOADS="mirror://sourceforge/${PN}/${PV}/${PN}_${PV}.orig.tar.gz -> ${PNV}.tar.gz"
 
