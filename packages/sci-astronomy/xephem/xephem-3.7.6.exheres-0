@@ -3,6 +3,6 @@
 
 require xephem
 
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 SLOT="0"
 
