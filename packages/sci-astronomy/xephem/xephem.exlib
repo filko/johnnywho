@@ -38,6 +38,8 @@ BUGS_TO="johnkall007@gmail.com"
 UPSTREAM_CHANGELOG="http://www.clearskyinstitute.com/${PN}/changes.html"
 UPSTREAM_DOCUMENTATION="http://www.clearskyinstitute.com/${PN}/help/${PN}.html"
 
+DEFAULT_SRC_PREPARE_PATCHES=("${FILES}"/fix_Makefile.patch)
+
 export_exlib_phases src_compile src_install pkg_postinst
 
 xephem_src_compile() {
