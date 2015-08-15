@@ -1,0 +1,52 @@
+# Copyright 2015 John Kallimanis <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://repo.or.cz/fbpdf.git"
+
+require scm-git
+
+SUMMARY="fbpdf is a small framebuffer document viewer"
+DESCRIPTION="A small framebuffer document viewer using mupdf,  poppler and/or djvulibre. Requires framebuffer support in the kernel."
+
+HOMEPAGE="http://litcave.rudi.ir/"
+
+LICENCES=""
+SLOT="0"
+MYOPTIONS="
+    (
+        djvu [[ description = [ Render djvu with djvulibre (fbdjvu) ] ]]
+        mupdf [[ description = [ Use mupdf to render pdf (fbpdf) ] ]]
+        poppler [[ description = [ Use poppler to render pdf (fbpdf2) ] ]]
+    ) [[
+        number-selected = at-least-one
+      ]]
+"
+DEPENDENCIES="
+     build+run:
+        djvu? (
+            app-text/djvu
+        )
+        mupdf? (
+            app-text/mupdf
+        )
+        poppler? (
+            app-text/poppler
+        )
+"
+BUGS_TO="johnkall007@gmail.com"
+
+export_exlib_phases src_prepare src_compile src_install
+
+fbpdf_src_prepare () {
+    default
+    edo cp "${FILES}"/Makefile "${WORK}"/Makefile
+}
+
+fbpdf_src_compile () {
+    emake $(option djvu fbdjvu) $(option mupdf fbpdf) $(option poppler fbpdf2)
+}
+
+fbpdf_src_install () {
+    dobin $(option djvu fbdjvu) $(option mupdf fbpdf) $(option poppler fbpdf2)
+}
+
