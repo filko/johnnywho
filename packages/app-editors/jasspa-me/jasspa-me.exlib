@@ -1,0 +1,73 @@
+# Copyright 2015 John Kallimanis <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="MicroEmacs, the JASSPA distribution"
+DESCRIPTION="
+An Emacs editor biased towards UNIX users, working across platforms by providing a consistent interface under UNIX, Microsoft Windows '95/'98/NT and DOS operating systems.
+    -- Fully featured editor, retaining the lightness of the original MicroEmacs 3.8 with much enhanced capability.
+    -- Small memory and disk footprint.
+    -- A much enhanced version of the Danial Lawrence's original MicroEmacs 3.8 of 1988.
+    -- It is stressed that although Danial Lawrence's 3.8 version was used as a base, he has had no involvement in the development of this distribution.
+To avoid any confusion with the original MicroEmacs, this distribution should be referred to as the JASSPA distribution.
+"
+HOMEPAGE="http://www.jasspa.com/"
+DOWNLOADS="
+http://www.jasspa.com/release_${PV}/jasspa-${PV}-src.tar.bz2
+http://www.jasspa.com/release_${PV}/${PN}tree-${PV}.tar.gz
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="
+    (
+        me [[ description = [ Build MicroEmacs ] ]]
+        ne [[ description = [ Build NanoEmacs ] ]]
+    ) [[
+        number-selected = at-least-one
+      ]]
+    X
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libbsd
+        X? (
+            x11-libs/libX11
+            x11-libs/libXau
+            x11-libs/libxcb
+            x11-libs/libXdmcp
+        )
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
+export_exlib_phases src_prepare src_compile src_install
+
+WORK="${WORKBASE}"/usr/src/"${PNV}"/src
+
+jasspa-me_src_prepare () {
+    default
+    edo cp "${FILES}"/linux-exherbo.gmk "${WORK}"/
+}
+
+jasspa-me_src_compile () {
+    BINARIES="$(option X "$(option me mecw)$(option ne necw)" "$(option me mec)$(option ne nec)")"
+    emake -f linux-exherbo.gmk "${BINARIES[*]}"
+}
+
+jasspa-me_src_install () {
+    dobin "${BINARIES[*]}"
+
+    dodir /usr/share/jasspa
+    insinto /usr/share/jasspa
+    doins -r ${WORKBASE}/jasspa/*
+
+    edo cd ..
+    emagicdocs
+
+    if option X ; then
+        insinto /usr/share/applications
+        doins "${FILES}"/jasspa-microemacs.desktop
+    fi
+}
+

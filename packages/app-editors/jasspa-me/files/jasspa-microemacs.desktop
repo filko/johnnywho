@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=2009
+Name=Jasspa MicroEmacs
+GenericName=Text Editor
+Comment=Advanced Text Editor
+Icon=/usr/share/jasspa/pixmaps/me_128.png
+TryExec=mecw
+Exec=mecw %F
+Terminal=false
+MimeType=text/plain;
+Categories=Development;TextEditor;
+StartupWMClass=MicroEmacs
