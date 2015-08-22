@@ -51,12 +51,18 @@ jasspa-me_src_prepare () {
 }
 
 jasspa-me_src_compile () {
-    BINARIES="$(option X "$(option me mecw)$(option ne necw)" "$(option me mec)$(option ne nec)")"
-    emake -f linux-exherbo.gmk "${BINARIES[*]}"
+    if optionq me ; then
+        emake -f linux-exherbo.gmk $(option X me mec)
+        nonfatal edo mv mec me
+    fi
+    if optionq me ; then
+        emake -f linux-exherbo.gmk $(option X necw ne)
+        nonfatal edo mv necw ne
+    fi
 }
 
 jasspa-me_src_install () {
-    dobin "${BINARIES[*]}"
+    dobin $(optionv me) $(optionv ne)
 
     dodir /usr/share/jasspa
     insinto /usr/share/jasspa
