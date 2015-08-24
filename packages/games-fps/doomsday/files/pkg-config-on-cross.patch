@@ -1,0 +1,68 @@
+Source: John Kallimanis
+Upstream: Submitted
+Reason: pkg-config is prefixed on cross
+diff -rupN doomsday-1.14.0/doomsday/dep_opengl.pri doomsday-1.14.0-new/doomsday/dep_opengl.pri
+--- doomsday-1.14.0/doomsday/dep_opengl.pri	2014-04-16 14:13:44.000000000 +0300
++++ doomsday-1.14.0-new/doomsday/dep_opengl.pri	2015-08-24 17:55:43.849192121 +0300
+@@ -18,8 +18,8 @@ else:macx {
+ }
+ else {
+     # Generic Unix.
+-    LIBS += $$system(pkg-config --libs gl)
+-    INCLUDEPATH += $$system(pkg-config --cflags gl)
++    LIBS += $$system(${PKG_CONFIG} --libs gl)
++    INCLUDEPATH += $$system(${PKG_CONFIG} --cflags gl)
+ 
+     # An additional include path for user's GL headers.
+     !isEmpty(OPENGL_DIR): INCLUDEPATH = $$OPENGL_DIR $$INCLUDEPATH
+diff -rupN doomsday-1.14.0/doomsday/dep_sdl.pri doomsday-1.14.0-new/doomsday/dep_sdl.pri
+--- doomsday-1.14.0/doomsday/dep_sdl.pri	2014-04-16 14:13:44.000000000 +0300
++++ doomsday-1.14.0-new/doomsday/dep_sdl.pri	2015-08-24 18:32:16.499842751 +0300
+@@ -29,10 +29,10 @@ else:macx {
+ }
+ else {
+     # Generic Unix.
+-    sdlflags = $$system(pkg-config sdl --cflags)
++    sdlflags = $$system(${PKG_CONFIG} sdl --cflags)
+     QMAKE_CFLAGS += $$sdlflags
+     QMAKE_CXXFLAGS += $$sdlflags
+-    LIBS += $$system(pkg-config sdl --libs)
++    LIBS += $$system(${PKG_CONFIG} sdl --libs)
+ }
+ 
+ # Should we include SDL_mixer in the build, too?
+diff -rupN doomsday-1.14.0/doomsday/dep_zlib.pri doomsday-1.14.0-new/doomsday/dep_zlib.pri
+--- doomsday-1.14.0/doomsday/dep_zlib.pri	2014-04-16 14:13:44.000000000 +0300
++++ doomsday-1.14.0-new/doomsday/dep_zlib.pri	2015-08-24 18:30:58.460469785 +0300
+@@ -14,6 +14,6 @@ else:macx {
+ }
+ else {
+     # Generic Unix.
+-    QMAKE_CFLAGS += $$system(pkg-config zlib --cflags)
+-    LIBS += $$system(pkg-config zlib --libs)
++    QMAKE_CFLAGS += $$system(${PKG_CONFIG} zlib --cflags)
++    LIBS += $$system(${PKG_CONFIG} zlib --libs)
+ }
+diff -rupN doomsday-1.14.0/doomsday/libgui/libgui.pro doomsday-1.14.0-new/doomsday/libgui/libgui.pro
+--- doomsday-1.14.0/doomsday/libgui/libgui.pro	2014-04-16 14:13:47.000000000 +0300
++++ doomsday-1.14.0-new/doomsday/libgui/libgui.pro	2015-08-24 17:54:02.661856364 +0300
+@@ -32,15 +32,15 @@ else:unix {
+     # DisplayMode uses the Xrandr and XFree86-VideoMode extensions.
+     !deng_nodisplaymode {
+         # Check that the X11 extensions exist.
+-        !system(pkg-config --exists xxf86vm) {
++        !system(${PKG_CONFIG} --exists xxf86vm) {
+             error(Missing dependency: X11 XFree86 video mode extension library (development headers). Alternatively disable display mode functionality with: CONFIG+=deng_nodisplaymode)
+         }
+-        !system(pkg-config --exists xrandr) {
++        !system(${PKG_CONFIG} --exists xrandr) {
+             error(Missing dependency: X11 RandR extension library (development headers). Alternatively disable display mode functionality with: CONFIG+=deng_nodisplaymode)
+         }
+ 
+-        QMAKE_CXXFLAGS += $$system(pkg-config xrandr xxf86vm --cflags)
+-                  LIBS += $$system(pkg-config xrandr xxf86vm --libs)
++        QMAKE_CXXFLAGS += $$system(${PKG_CONFIG} xrandr xxf86vm --cflags)
++                  LIBS += $$system(${PKG_CONFIG} xrandr xxf86vm --libs)
+     }
+ }
+ 

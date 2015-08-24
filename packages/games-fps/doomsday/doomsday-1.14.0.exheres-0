@@ -32,10 +32,17 @@ DEPENDENCIES="
         dev-python/wxPython
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/pkg-config-on-cross.patch
+    "${FILES}"/base-dir-set-externally.patch
+    "${FILES}"/desktop-files-path.patch
+)
+
 src_configure() {
     edo mkdir build
     edo pushd build
-    eqmake -r ../doomsday/doomsday.pro CONFIG+=deng_noopenal CONFIG+=deng_snowberry
+    eqmake -r ../doomsday/doomsday.pro CONFIG+=deng_noopenal CONFIG+=deng_snowberry PREFIX=/usr/"$(exhost --target)" DENG_LIB_DIR=/usr/"$(exhost --target)"/lib \
+        DENG_BASE_DIR=/usr/share/doomsday
     edo popd
 }
 

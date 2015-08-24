@@ -1,0 +1,15 @@
+Source: John Kallimanis
+Upstream: No, probably a more complete patch
+Reason: .desktop files installed under wrong directories
+diff -rupN doomsday-1.14.0/doomsday/build/build.pro doomsday-1.14.0-new/doomsday/build/build.pro
+--- doomsday-1.14.0/doomsday/build/build.pro	2014-04-16 14:13:42.000000000 +0300
++++ doomsday-1.14.0-new/doomsday/build/build.pro	2015-08-25 00:03:35.205528498 +0300
+@@ -84,7 +84,7 @@ QMAKE_STRIP = true
+         <\"../../distrib/linux/$$DESKTOP_FILE\" \
+         >\"$$OUT_PWD/$$DESKTOP_FILE\"): error(Can\'t build $$DESKTOP_FILE)
+     desktop.files = $$OUT_PWD/$$DESKTOP_FILE
+-    desktop.path = $$PREFIX/share/applications
++    desktop.path = /usr/share/applications
+ 
+     INSTALLS += conf plugins sb launch desktop
+ }

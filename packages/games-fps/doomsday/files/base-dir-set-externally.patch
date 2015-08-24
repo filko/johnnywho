@@ -1,0 +1,18 @@
+Source: John Kallimanis
+Upstream: Submitted
+Reason: Un-hardcodes DENG_BASE_DIR (a.k.a. /usr/share)
+diff -rupN doomsday-1.14.0/doomsday/config_unix.pri doomsday-1.14.0-new/doomsday/config_unix.pri
+--- doomsday-1.14.0/doomsday/config_unix.pri	2014-04-16 14:13:44.000000000 +0300
++++ doomsday-1.14.0-new/doomsday/config_unix.pri	2015-08-24 22:55:01.113845969 +0300
+@@ -41,7 +41,10 @@ DENG_PLUGIN_LIB_DIR = $$DENG_LIB_DIR/doo
+ # the linker where to find them.
+ !contains(DENG_LIB_DIR, ^/usr/.*): QMAKE_LFLAGS += -Wl,-rpath,$$DENG_LIB_DIR
+ 
+-DENG_BASE_DIR = $$PREFIX/share/doomsday
++isEmpty(DENG_BASE_DIR) {
++    DENG_BASE_DIR = $$PREFIX/share/doomsday
++}
++
+ DENG_DATA_DIR = $$DENG_BASE_DIR/data
+ 
+ DEFINES += DENG_BASE_DIR=\"\\\"$${DENG_BASE_DIR}/\\\"\"
