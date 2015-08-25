@@ -56,5 +56,8 @@ src_install() {
     edo pushd build
     default
     edo popd
+    # Still can't figure out which of the ~20 build system files I have to edit for this one...
+    edo cp -r "${IMAGE}"/usr/"$(exhost --target)"/share "${IMAGE}"/usr/
+    edo rm -r "${IMAGE}"/usr/"$(exhost --target)"/share
 }
 
