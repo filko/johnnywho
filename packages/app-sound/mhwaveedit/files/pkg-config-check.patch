@@ -1,0 +1,15 @@
+Source: John Kallimanis
+Upstream: No, old version
+Reason: Find pkg-config
+diff -rupN mhwaveedit-1.4.22/configure.in mhwaveedit-1.4.22-new/configure.in
+--- mhwaveedit-1.4.22/configure.in	2012-07-25 22:04:30.000000000 +0300
++++ mhwaveedit-1.4.22-new/configure.in	2015-08-26 19:27:33.802796714 +0300
+@@ -69,6 +69,8 @@ AC_ARG_WITH(default-mixerapp,
+ DEFAULT_MIXERAPP=$withval)
+ AC_DEFINE_UNQUOTED(DEFAULT_MIXERAPP,"${DEFAULT_MIXERAPP}",[Default mixer application])
+ 
++AC_PATH_TOOL(pkg_config, pkg-config,,)
++
+ dnl Checks for programs.
+ AC_PROG_CC
+ AC_PROG_GCC_TRADITIONAL

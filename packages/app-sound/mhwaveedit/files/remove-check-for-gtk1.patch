@@ -1,0 +1,20 @@
+Source: John Kallimanis
+Upstream: Out of scope
+Reason: We don' t have macros for detecting ancient GTK
+diff -rupN mhwaveedit-1.4.22/configure.in mhwaveedit-1.4.22-new/configure.in
+--- mhwaveedit-1.4.22/configure.in	2012-07-25 22:04:30.000000000 +0300
++++ mhwaveedit-1.4.22-new/configure.in	2015-08-26 19:56:37.079002763 +0300
+@@ -381,9 +381,10 @@ if test "x$FOUND_GTK" = "xno"; then
+ 	fi
+ fi
+ 
+-if test "x$FOUND_GTK" = "xno"; then
+-AM_PATH_GTK(1.2.5,FOUND_GTK="yes",AC_MSG_ERROR(mhWaveEdit requires GTK+ version 1.2.5 or higher...))
+-fi
++# We don' t need it
++#if test "x$FOUND_GTK" = "xno"; then
++#AM_PATH_GTK(1.2.5,FOUND_GTK="yes",AC_MSG_ERROR(mhWaveEdit requires GTK+ version 1.2.5 or higher...))
++#fi
+ 
+ dnl Check for gthread if we're using GTK+ 2
+ dnl Not needed by the app itself, but needed for some aRts versions.
