@@ -9,7 +9,8 @@ DOWNLOADS="mirror://sourceforge/kino/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="jpeg quicktime"
+MYOPTIONS="jpeg quicktime
+    jpeg? ( ( providers: ijg-jpeg jpeg-turbo ) [[ number-selected = exactly-one ]] )"
 
 DEPENDENCIES="
     build+run:
@@ -17,10 +18,8 @@ DEPENDENCIES="
     media-libs/libavc1394[>=0.5.1]
     media-libs/libiec61883[>=1.0]
     media-libs/libraw1394[>=1.1]
-    jpeg? (
-        media-libs/libjpeg-turbo
-        media-libs/jpeg
-    )
+    providers:ijg-jpeg? ( media-libs/jpeg:= )
+    providers:jpeg-turbo? ( media-libs/libjpeg-turbo )
     quicktime? (
         media-libs/libquicktime
     )
