@@ -1,7 +1,8 @@
+# Copyright 2016 John Kallimanis <johnkall007@gmail.com>
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome-2
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]  gtk-icon-cache
 
 SUMMARY="Graphical IRC client"
 HOMEPAGE="http://www.xchat.org/"
@@ -38,14 +39,21 @@ DEPENDENCIES="
                gtkspell? ( app-spell/gtkspell:2[>=2.0.2] )
                x11-libs/gtk+:2[>=2.10] )
         perl? ( dev-lang/perl[>=5.8.0] )
-        python? ( dev-lang/python:=[>=2.2] )
+        python? ( dev-lang/python:2[>=2.2] )
         tcl? ( dev-lang/tcl[>=8.4] )
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
     -p0 "${FILES}"/${PNV}-glib_and_exec.patch
+    -p0 "${FILES}"/Fix-pkg-config-in-multiarch.patch
 )
 
+src_prepare() {
+    # Obsolete gettext
+    edo cp "${ROOT}"/usr/share/gettext/po/Makefile.in.in "${WORK}"/po/Makefile.in.in
+
+    autotools_src_prepare
+}
 src_configure() {
     local spelling
 
@@ -70,3 +78,4 @@ src_configure() {
         --enable-plugin \
         "${spelling}"
 }
+

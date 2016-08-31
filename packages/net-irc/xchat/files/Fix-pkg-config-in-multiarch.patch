@@ -1,0 +1,32 @@
+Source: John Kallimanis
+Reason: Fix multiarch build
+Upstream: No. Development seems dormant.
+--- configure.in	2010-05-30 09:01:16.000000000 +0300
++++ configure.in	2016-09-01 22:13:53.917002709 +0300
+@@ -210,7 +210,7 @@
+ dnl *********************************************************************
+ 
+ if test "$xft" = yes; then
+-	AC_PATH_PROG(pkgconfigpath, pkg-config)
++	AC_PATH_PROG(pkgconfigpath, "${CHOST}"-pkg-config)
+ 	if $pkgconfigpath xft --exists; then
+ 		GUI_CFLAGS="$GUI_CFLAGS `$pkgconfigpath xft --cflags`"
+ 		GUI_LIBS="$GUI_LIBS `$pkgconfigpath xft --libs`"
+@@ -384,7 +384,7 @@
+ 
+ retry=no
+ if test "$openssl" != no; then
+-	AC_PATH_PROG(pkgconfigpath, pkg-config)
++	AC_PATH_PROG(pkgconfigpath, ${CHOST}-pkg-config)
+ 	AC_MSG_CHECKING(for openssl through pkg-config)
+ 	if $pkgconfigpath openssl --exists; then
+ 		CPPFLAGS="$CPPFLAGS `$pkgconfigpath openssl --cflags`"
+@@ -444,7 +444,7 @@
+ 	fi
+ 	if test "$have_dl" = yes; then
+ 		AC_DEFINE(USE_PLUGIN)
+-		AC_PATH_PROG(pkgconfigpath, pkg-config)
++		AC_PATH_PROG(pkgconfigpath, ${CHOST}-pkg-config)
+ 		dnl we just need the -Wl,--export-dynamic, but not -lgmodule-2.0
+ 		RDYNAMIC_FLAGS="`$pkgconfigpath gmodule-2.0 --libs | $sedpath 's/ -lgmodule-2.0//'`"
+ 		LIBS="$LIBS $RDYNAMIC_FLAGS"
