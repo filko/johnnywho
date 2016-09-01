@@ -23,7 +23,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.16]
         net-misc/curl[>=7.16.0]
-        x11-libs/goocanvas[>=0.9]
+        x11-libs/goocanvas:0[>=0.9]
         x11-libs/gtk+:2[>=2.12]
 "
 
