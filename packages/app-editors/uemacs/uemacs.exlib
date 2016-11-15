@@ -1,0 +1,54 @@
+# Copyright 2016 John Kallimanis <johnkall007@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://git.kernel.org/pub/scm/editors/uemacs/uemacs.git"
+
+require scm-git
+
+SUMMARY="Full screen editor based on MicroEMACS 3.9e"
+
+DESCRIPTION="
+WHAT IS uEmacs/PK?
+
+uEmacs/PK 4.0 is an enhanced version of MicroEMACS 3.9e. Enhancements
+have been incorporated by Petri H. Kutvonen, University of Helsinki,
+Finland <kutvonen@cs.Helsinki.FI>.
+
+
+WHY IS IT BASED ON AN OLD VERSION OF MicroEMACS?
+
+In my opinion 3.9e was the best of all MicroEMACSes. Creeping
+featurism, growing size, and reduced portability made versions 3.10 and
+3.11 less attractive. MicroEMACS 3.9e was one of the few editors that
+were truly portable between different flavours of UNIX, PC/MS-DOS, and
+VAX/VMS. It was pretty robust - although not flawless. uEmacs/PK 4.0
+includes numerous bug fixes, adds some new functionality and comfort but
+does not sacrifice the best things (small size and portability).
+
+NOTE: This MicroEMACS has proper UTF-8 support, unlike jasspa and mg.
+"
+HOMEPAGE="https://git.kernel.org/cgit/editors/uemacs/uemacs.git/about/"
+
+LICENCES="MicroEMACS"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+"
+
+BUGS_TO="johnkall007@gmail.com"
+
+export_exlib_phases src_prepare src_install
+
+uemacs_src_prepare() {
+    edo cp "${FILES}"/Makefile "${WORK}"/Makefile
+    default
+}
+
+uemacs_src_install() {
+    dobin em
+    dodoc emacs.hlp
+    dodoc emacs.rc
+}
+
